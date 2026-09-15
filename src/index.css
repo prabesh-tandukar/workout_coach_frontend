@@ -1,0 +1,483 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap");
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --surface-2: #1f1f1f;
+  --border: #282828;
+  --border-soft: #222222;
+  --accent: #f5a623;
+  --accent-dim: #d48c18;
+  --accent-glow: rgba(245, 166, 35, 0.12);
+  --text: #efefef;
+  --text-dim: #999;
+  --text-muted: #555;
+  --success: #4ade80;
+  --danger: #f87171;
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 56px 20px 100px;
+  display: flex;
+  justify-content: center;
+  /* Subtle dot-grid texture */
+  background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+#root {
+  width: 100%;
+  max-width: 580px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.app-header {
+  padding: 8px 0 20px;
+}
+
+.header-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  padding: 3px 12px;
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+}
+
+.app-header h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+
+.header-sub {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+/* ============================================================
+   FORM CARD
+   ============================================================ */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Each form row */
+.form-section {
+  display: flex;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: flex-start;
+}
+
+.section-num {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-top: 3px;
+  flex-shrink: 0;
+  width: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.section-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-body label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.optional {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+/* Text inputs */
+.section-body input[type="text"],
+.section-body input[type="number"] {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.section-body input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.section-body input::placeholder {
+  color: var(--text-muted);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ============================================================
+   EXPERIENCE PILLS (3 options, single select)
+   ============================================================ */
+.pill-group {
+  display: flex;
+  gap: 8px;
+}
+
+.pill {
+  flex: 1;
+  padding: 9px 14px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.pill-active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   EQUIPMENT CHIPS (multi-select)
+   ============================================================ */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 7px 14px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.chip-active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   GENERATE BUTTON
+   ============================================================ */
+.form-footer {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 15px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s,
+    opacity 0.15s;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: var(--accent-dim);
+}
+.generate-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+.generate-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Loading state */
+.loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(13, 13, 13, 0.3);
+  border-top-color: #0d0d0d;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-msg {
+  font-size: 0.82rem;
+  color: var(--danger);
+  text-align: center;
+}
+
+/* ============================================================
+   WORKOUT PLAN OUTPUT
+   ============================================================ */
+.plan-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: fadeUp 0.3s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.plan-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+
+.plan-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--success);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.plan-header h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.plan-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.action-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   MARKDOWN CONTENT
+   ============================================================ */
+.markdown {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #bbb;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  color: var(--accent);
+  font-size: 1.05rem;
+  margin-top: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.markdown p {
+  color: #bbb;
+}
+
+.markdown strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.markdown li {
+  color: #bbb;
+}
+.markdown ul li::marker {
+  color: var(--accent);
+}
+.markdown ol li::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.markdown hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  body {
+    background: white;
+    background-image: none;
+    color: black;
+    padding: 20px;
+  }
+  .form-card,
+  .app-header,
+  .plan-actions,
+  .plan-eyebrow {
+    display: none;
+  }
+  .plan-card {
+    border: none;
+    box-shadow: none;
+  }
+  .plan-header h2 {
+    color: black;
+  }
+  .markdown h1,
+  .markdown h2,
+  .markdown h3 {
+    color: #333;
+    border-color: #ddd;
+  }
+  .markdown p,
+  .markdown li,
+  .markdown strong {
+    color: black;
+  }
+}
