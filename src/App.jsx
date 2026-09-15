@@ -35,7 +35,7 @@ function App() {
     setError("");
     try {
       const response = await fetch(
-        "https://workout-coach-backend.onrender.com",
+        "https://workout-coach-backend.onrender.com/generate-workout",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
