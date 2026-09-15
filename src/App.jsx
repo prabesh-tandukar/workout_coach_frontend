@@ -34,18 +34,21 @@ function App() {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:3001/generate-workout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          goal,
-          time,
-          equipment: equipment.join(", "),
-          experience,
-          daysPerWeek,
-          injuries,
-        }),
-      });
+      const response = await fetch(
+        "https://workout-coach-backend.onrender.com",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            goal,
+            time,
+            equipment: equipment.join(", "),
+            experience,
+            daysPerWeek,
+            injuries,
+          }),
+        },
+      );
       const data = await response.json();
       setWorkoutPlan(data.workoutPlan);
     } catch {
